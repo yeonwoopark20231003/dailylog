@@ -1,9 +1,12 @@
 package com.sparta.dailylog.post;
 
+import com.sparta.dailylog.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.context.annotation.Primary;
+
+import java.time.LocalDateTime;
 
 @Getter
 @Entity
@@ -21,8 +24,16 @@ public class Post {
     @Column (nullable = false)
     private String content;
 
-    public Post(String title, String content){
-        this.title = title;
-        this.content = content;
+    @Column
+    private LocalDateTime createDate;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id_id")
+    private User user;
+
+    public Post(PostRequestDto dto){
+        this.title = dto.getTitle();
+        this.content = dto.getContent();
+        this.createDate = LocalDateTime.now();
     }
 }
