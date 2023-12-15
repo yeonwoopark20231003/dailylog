@@ -3,14 +3,13 @@ package com.sparta.dailylog.post;
 
 import com.sparta.dailylog.CommonResponseDto;
 import com.sparta.dailylog.user.UserDetailsImpl;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.HttpClientErrorException;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -36,8 +35,13 @@ public class PostController {
         }catch (IllegalArgumentException e){
             return ResponseEntity.badRequest().body(new CommonResponseDto(e.getMessage(), HttpStatus.BAD_REQUEST.value()));
         }
-
-
     }
+
+    @GetMapping
+    public ResponseEntity<List<PostResponseDto>> getAllPosts(){
+        List<PostResponseDto> postResponseDtoList= postService.getAllPosts();
+        return ResponseEntity.ok().body(postResponseDtoList) ;
+    }
+
 
 }
