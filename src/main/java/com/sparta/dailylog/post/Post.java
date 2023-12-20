@@ -1,5 +1,6 @@
 package com.sparta.dailylog.post;
 
+import com.sparta.dailylog.Timestamped;
 import com.sparta.dailylog.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -12,7 +13,8 @@ import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor
 @Table (name = "posts")
-public class Post {
+public class Post extends Timestamped {
+
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -24,16 +26,21 @@ public class Post {
     @Column (nullable = false)
     private String content;
 
-    @Column
-    private LocalDateTime createDate;
-
     @ManyToOne
-    @JoinColumn(name = "user_id_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Post(PostRequestDto dto){
         this.title = dto.getTitle();
         this.content = dto.getContent();
-        this.createDate = LocalDateTime.now();
+    }
+
+    public void updatePost(PostRequestDto requestDto) {
+        this.title = requestDto.getTitle();
+        this.content = requestDto.getContent();
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

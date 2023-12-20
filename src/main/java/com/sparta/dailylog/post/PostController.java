@@ -21,7 +21,7 @@ public class PostController {
 
     @PostMapping
     public ResponseEntity<CommonResponseDto> createPost (@RequestBody PostRequestDto postRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
-        PostResponseDto postResponseDto = postService.createPost(postRequestDto);
+        PostResponseDto postResponseDto = postService.createPost(postRequestDto,userDetails.getUser());
         return ResponseEntity.ok().body(postResponseDto);
     }
 
@@ -37,11 +37,36 @@ public class PostController {
         }
     }
 
+    //전체 게시글 조회
     @GetMapping
     public ResponseEntity<List<PostResponseDto>> getAllPosts(){
         List<PostResponseDto> postResponseDtoList= postService.getAllPosts();
         return ResponseEntity.ok().body(postResponseDtoList) ;
     }
 
+    //게시글 수정
+    @PutMapping("/{postId}")
+    public ResponseEntity<CommonResponseDto> updatePost(@PathVariable Long postId, @RequestBody PostRequestDto requestDto,@AuthenticationPrincipal UserDetailsImpl userDetails) {
+        try {
+            PostResponseDto postResponseDto = postService.updatePost(postId, requestDto, userDetails.getUser());
+            return  ResponseEntity.ok().body(postResponseDto);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(new CommonResponseDto(e.getMessage(), HttpStatus.BAD_REQUEST.value()));
+        }
+    }
+
+
+    //게시글 삭제
+    @DeleteMapping("/{postId}")
+    public ResponseEntity<CommonResponseDto> deletePost(@PathVariable Long postId, @AuthenticationPrincipal UserDetailsImpl userDetails){
+        try {
+            postService.deletePost(postId, userDetails.getUser());
+            String redirectUrl = "api/posts";
+            return ResponseEntity.ok().body(new CommonResponseDto("Success", HttpStatus.OK.value()));
+            //왜 리다이렉트 안되지
+        }catch (IllegalArgumentException e){
+            return ResponseEntity.badRequest().body(new CommonResponseDto(e.getMessage(),HttpStatus.BAD_REQUEST.value()));
+        }
+    }
 
 }
