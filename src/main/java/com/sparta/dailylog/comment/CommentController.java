@@ -24,8 +24,28 @@ public class CommentController {
        }catch (IllegalArgumentException e) {
            return ResponseEntity.badRequest().body(new CommonResponseDto(e.getMessage(), HttpStatus.BAD_REQUEST.value()));
        }
-
     }
 
+    @PutMapping("/comments/{commentId}")
+    public ResponseEntity<CommonResponseDto> updateComment(
+            @RequestBody CommentRequestDto requestDto,
+            @AuthenticationPrincipal UserDetailsImpl userDetails,
+            @PathVariable Long postId,
+            @PathVariable Long commentId){
+        try {
+            CommentResponseDto commentResponseDto = commentService.updateComment(requestDto, userDetails.getUser(),postId,commentId);
+            return ResponseEntity.ok().body(commentResponseDto);
+        }catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(new CommonResponseDto(e.getMessage(), HttpStatus.BAD_REQUEST.value()));
+        }
+    }
+
+    @DeleteMapping("/comments/{commentId}")
+    public void deleteComment(
+            @AuthenticationPrincipal UserDetailsImpl userDetails,
+            @PathVariable Long postId,
+            @PathVariable Long commentId){
+        commentService.delete(userDetails.getUser(), postId,commentId);
+    }
 
 }
