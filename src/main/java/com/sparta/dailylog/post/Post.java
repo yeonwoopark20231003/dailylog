@@ -5,9 +5,6 @@ import com.sparta.dailylog.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.context.annotation.Primary;
-
-import java.time.LocalDateTime;
 
 @Getter
 @Entity

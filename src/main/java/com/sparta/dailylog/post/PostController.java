@@ -19,22 +19,18 @@ public class PostController {
     private final PostService postService;
     private final PostRepository postRepository;
 
+
+    //게시글 생성
     @PostMapping
     public ResponseEntity<CommonResponseDto> createPost (@RequestBody PostRequestDto postRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
         PostResponseDto postResponseDto = postService.createPost(postRequestDto,userDetails.getUser());
         return ResponseEntity.ok().body(postResponseDto);
     }
 
-
+    //게시글 개별 조회
     @GetMapping("/{postId}")
-    public ResponseEntity<CommonResponseDto> getPost(@PathVariable Long postId){
-
-        try {
-            PostResponseDto postResponseDto = postService.getPost(postId);
-            return ResponseEntity.ok().body(postResponseDto);
-        }catch (IllegalArgumentException e){
-            return ResponseEntity.badRequest().body(new CommonResponseDto(e.getMessage(), HttpStatus.BAD_REQUEST.value()));
-        }
+    public PostResponseDto getPost(@PathVariable Long postId){
+        return postService.getPost(postId);
     }
 
     //전체 게시글 조회
@@ -46,27 +42,30 @@ public class PostController {
 
     //게시글 수정
     @PutMapping("/{postId}")
-    public ResponseEntity<CommonResponseDto> updatePost(@PathVariable Long postId, @RequestBody PostRequestDto requestDto,@AuthenticationPrincipal UserDetailsImpl userDetails) {
-        try {
+    public PostResponseDto updatePost(@PathVariable Long postId, @RequestBody PostRequestDto requestDto,@AuthenticationPrincipal UserDetailsImpl userDetails) {
+/*        try {
             PostResponseDto postResponseDto = postService.updatePost(postId, requestDto, userDetails.getUser());
             return  ResponseEntity.ok().body(postResponseDto);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(new CommonResponseDto(e.getMessage(), HttpStatus.BAD_REQUEST.value()));
-        }
+        }*/
+
+        return postService.updatePost(postId, requestDto, userDetails.getUser());
     }
 
 
     //게시글 삭제
     @DeleteMapping("/{postId}")
-    public ResponseEntity<CommonResponseDto> deletePost(@PathVariable Long postId, @AuthenticationPrincipal UserDetailsImpl userDetails){
-        try {
+    public void deletePost(@PathVariable Long postId, @AuthenticationPrincipal UserDetailsImpl userDetails){
+  /*      try {
             postService.deletePost(postId, userDetails.getUser());
             String redirectUrl = "api/posts";
             return ResponseEntity.ok().body(new CommonResponseDto("Success", HttpStatus.OK.value()));
             //왜 리다이렉트 안되지
         }catch (IllegalArgumentException e){
             return ResponseEntity.badRequest().body(new CommonResponseDto(e.getMessage(),HttpStatus.BAD_REQUEST.value()));
-        }
+        }*/
+        postService.deletePost(postId, userDetails.getUser());
     }
 
 }

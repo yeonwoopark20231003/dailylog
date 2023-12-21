@@ -43,7 +43,7 @@ public class PostService {
     public PostResponseDto updatePost(Long postId, PostRequestDto requestDto, User user) {
         Post post= findpost(postId);
         if (!user.getId().equals(post.getUser().getId())){
-            throw new RejectedExecutionException("작성자만 수정할 수 있습니다.");
+            throw new IllegalArgumentException("작성자만 수정할 수 있습니다.");
         }
         post.updatePost(requestDto);
         postRepository.save(post);
