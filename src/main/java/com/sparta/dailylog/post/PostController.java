@@ -2,9 +2,10 @@ package com.sparta.dailylog.post;
 
 
 import com.sparta.dailylog.CommonResponseDto;
+import com.sparta.dailylog.post.dto.PostRequestDto;
+import com.sparta.dailylog.post.dto.PostResponseDto;
 import com.sparta.dailylog.user.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -22,41 +23,34 @@ public class PostController {
 
     //게시글 생성
     @PostMapping
-    public ResponseEntity<CommonResponseDto> createPost (@RequestBody PostRequestDto postRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
-        PostResponseDto postResponseDto = postService.createPost(postRequestDto,userDetails.getUser());
+    public ResponseEntity<CommonResponseDto> createPost(@RequestBody PostRequestDto postRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        PostResponseDto postResponseDto = postService.createPost(postRequestDto, userDetails.getUser());
         return ResponseEntity.ok().body(postResponseDto);
     }
 
-    //게시글 개별 조회
+    //개별 게시글+ 댓글 조회
     @GetMapping("/{postId}")
-    public PostResponseDto getPost(@PathVariable Long postId){
-        return postService.getPost(postId);
+    public ResponseEntity<CommonResponseDto> getPost(@PathVariable Long postId) {
+        return ResponseEntity.ok().body(postService.getPost(postId));
     }
 
     //전체 게시글 조회
     @GetMapping
-    public ResponseEntity<List<PostResponseDto>> getAllPosts(){
-        List<PostResponseDto> postResponseDtoList= postService.getAllPosts();
-        return ResponseEntity.ok().body(postResponseDtoList) ;
+    public ResponseEntity<List<PostResponseDto>> getAllPosts() {
+        List<PostResponseDto> postResponseDtoList = postService.getAllPosts();
+        return ResponseEntity.ok().body(postResponseDtoList);
     }
 
     //게시글 수정
     @PutMapping("/{postId}")
-    public PostResponseDto updatePost(@PathVariable Long postId, @RequestBody PostRequestDto requestDto,@AuthenticationPrincipal UserDetailsImpl userDetails) {
-/*        try {
-            PostResponseDto postResponseDto = postService.updatePost(postId, requestDto, userDetails.getUser());
-            return  ResponseEntity.ok().body(postResponseDto);
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(new CommonResponseDto(e.getMessage(), HttpStatus.BAD_REQUEST.value()));
-        }*/
-
+    public PostResponseDto updatePost(@PathVariable Long postId, @RequestBody PostRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return postService.updatePost(postId, requestDto, userDetails.getUser());
     }
 
 
     //게시글 삭제
     @DeleteMapping("/{postId}")
-    public void deletePost(@PathVariable Long postId, @AuthenticationPrincipal UserDetailsImpl userDetails){
+    public void deletePost(@PathVariable Long postId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
   /*      try {
             postService.deletePost(postId, userDetails.getUser());
             String redirectUrl = "api/posts";

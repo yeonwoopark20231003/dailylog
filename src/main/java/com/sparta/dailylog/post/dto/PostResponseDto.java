@@ -1,6 +1,7 @@
-package com.sparta.dailylog.post;
+package com.sparta.dailylog.post.dto;
 
 import com.sparta.dailylog.CommonResponseDto;
+import com.sparta.dailylog.post.Post;
 import lombok.*;
 
 @Getter
@@ -12,7 +13,7 @@ public class PostResponseDto extends CommonResponseDto {
     private String content;
     private String user;
 
-    PostResponseDto(Post post) {
+    public PostResponseDto(Post post) {
         this.id = post.getId();
         this.title = post.getTitle();
         this.content = post.getContent();

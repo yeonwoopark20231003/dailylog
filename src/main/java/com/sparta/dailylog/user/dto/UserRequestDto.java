@@ -1,4 +1,4 @@
-package com.sparta.dailylog.user;
+package com.sparta.dailylog.user.dto;
 
 import jakarta.validation.constraints.Pattern;
 import lombok.Getter;

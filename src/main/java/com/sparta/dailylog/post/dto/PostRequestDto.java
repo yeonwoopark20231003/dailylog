@@ -1,4 +1,4 @@
-package com.sparta.dailylog.post;
+package com.sparta.dailylog.post.dto;
 
 import lombok.*;
 

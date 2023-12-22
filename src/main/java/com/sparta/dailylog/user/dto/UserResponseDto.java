@@ -1,4 +1,4 @@
-package com.sparta.dailylog.user;
+package com.sparta.dailylog.user.dto;
 
 public class UserResponseDto {
     private Long id;
