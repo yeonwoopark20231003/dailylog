@@ -35,8 +35,8 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
         String token = jwtUtil.resolveToken(request);
 
-        if (Objects.nonNull(token)){
-            if (jwtUtil.validateToken(token)){
+        if (Objects.nonNull(token)) {
+            if (jwtUtil.validateToken(token)) {
                 Claims info = jwtUtil.getUserInfoFromToken(token);
 
                 //인증정보에 유저정보username 넣기
@@ -44,13 +44,13 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
                 String userId = info.getSubject();
                 SecurityContext context = SecurityContextHolder.createEmptyContext();
                 UserDetails userDetails = userDetailsService.getUserDetails(userId);
-                Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
+                Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 //securitycontext 에 담고
                 context.setAuthentication(authentication);
                 //securityContextHolder에 담고
                 SecurityContextHolder.setContext(context);
                 // 이제 @Authentication Principal로 조회할 수 있음
-            }else {
+            } else {
                 //인증정보가 존재하지 않을때
                 CommonResponseDto commonResponseDto = new CommonResponseDto("토큰이 유효하지 않습니다.", HttpStatus.BAD_REQUEST.value());
                 response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
@@ -59,6 +59,6 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
                 return;
             }
         }
-        filterChain.doFilter(request,response);
+        filterChain.doFilter(request, response);
     }
 }

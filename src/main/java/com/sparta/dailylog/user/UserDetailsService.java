@@ -11,9 +11,9 @@ public class UserDetailsService {
 
     private final UserRepository userRepository;
 
-    public UserDetails getUserDetails(String userId){
+    public UserDetails getUserDetails(String userId) {
         User user = userRepository.findByUserId(userId)
-                .orElseThrow(()-> new UsernameNotFoundException("Not Found"+ userId));
+                .orElseThrow(() -> new UsernameNotFoundException("Not Found" + userId));
         return new UserDetailsImpl(user);
     }
 }

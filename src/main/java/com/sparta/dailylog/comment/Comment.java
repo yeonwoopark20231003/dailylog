@@ -13,27 +13,27 @@ import org.hibernate.annotations.OnDeleteAction;
 @Getter
 @Entity
 @NoArgsConstructor
-@Table (name = "comment")
+@Table(name = "comment")
 public class Comment extends Timestamped {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column (nullable = false)
+    @Column(nullable = false)
     private String content;
 
 
     @ManyToOne
-    @JoinColumn (name = "user_id")
+    @JoinColumn(name = "user_id")
     @OnDelete(action = OnDeleteAction.SET_NULL)
     private User user;
 
     @ManyToOne
-    @JoinColumn (name = "post_id")
+    @JoinColumn(name = "post_id")
     private Post post;
 
-    public Comment(CommentRequestDto dto,User user, Post post) {
+    public Comment(CommentRequestDto dto, User user, Post post) {
         this.content = dto.getContent();
         this.user = user;
         this.post = post;

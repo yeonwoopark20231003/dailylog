@@ -17,13 +17,13 @@ public class CommentController {
     private final CommentService commentService;
 
     @PostMapping("/comments")
-    public ResponseEntity<CommonResponseDto> createComment(@RequestBody CommentRequestDto commentRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails, @PathVariable Long postId){
-       try {
-           CommentResponseDto commentResponseDto = commentService.createComment(commentRequestDto,userDetails.getUser(),postId);
+    public ResponseEntity<CommonResponseDto> createComment(@RequestBody CommentRequestDto commentRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails, @PathVariable Long postId) {
+        try {
+            CommentResponseDto commentResponseDto = commentService.createComment(commentRequestDto, userDetails.getUser(), postId);
             return ResponseEntity.ok().body(commentResponseDto);
-       }catch (IllegalArgumentException e) {
-           return ResponseEntity.badRequest().body(new CommonResponseDto(e.getMessage(), HttpStatus.BAD_REQUEST.value()));
-       }
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(new CommonResponseDto(e.getMessage(), HttpStatus.BAD_REQUEST.value()));
+        }
     }
 
     @PutMapping("/comments/{commentId}")
@@ -31,11 +31,11 @@ public class CommentController {
             @RequestBody CommentRequestDto requestDto,
             @AuthenticationPrincipal UserDetailsImpl userDetails,
             @PathVariable Long postId,
-            @PathVariable Long commentId){
+            @PathVariable Long commentId) {
         try {
-            CommentResponseDto commentResponseDto = commentService.updateComment(requestDto, userDetails.getUser(),postId,commentId);
+            CommentResponseDto commentResponseDto = commentService.updateComment(requestDto, userDetails.getUser(), postId, commentId);
             return ResponseEntity.ok().body(commentResponseDto);
-        }catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(new CommonResponseDto(e.getMessage(), HttpStatus.BAD_REQUEST.value()));
         }
     }
@@ -44,8 +44,8 @@ public class CommentController {
     public void deleteComment(
             @AuthenticationPrincipal UserDetailsImpl userDetails,
             @PathVariable Long postId,
-            @PathVariable Long commentId){
-        commentService.delete(userDetails.getUser(), postId,commentId);
+            @PathVariable Long commentId) {
+        commentService.delete(userDetails.getUser(), postId, commentId);
     }
 
 }

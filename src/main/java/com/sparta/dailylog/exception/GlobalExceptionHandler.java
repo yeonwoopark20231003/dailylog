@@ -11,12 +11,12 @@ public class GlobalExceptionHandler {
 
     //IllegalArgumentExcepition 예외처리
     @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<CommonResponseDto> IllegalArgumentException(IllegalArgumentException e){
+    public ResponseEntity<CommonResponseDto> IllegalArgumentException(IllegalArgumentException e) {
         return ResponseEntity.badRequest().body(new CommonResponseDto(e.getMessage(), HttpStatus.BAD_REQUEST.value()));
     }
 
     //기본 예외처리
-    public ResponseEntity<CommonResponseDto> handleException(Exception e){
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new CommonResponseDto("Internal Server Error",HttpStatus.INTERNAL_SERVER_ERROR.value()));
+    public ResponseEntity<CommonResponseDto> handleException(Exception e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new CommonResponseDto("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR.value()));
     }
 }

@@ -15,7 +15,7 @@ public class CommentResponseDto extends CommonResponseDto {
     private String userId;
     private LocalDateTime createdAt;
 
-    public CommentResponseDto(Comment comment){
+    public CommentResponseDto(Comment comment) {
         this.commentId = comment.getId();
         this.content = comment.getContent();
         this.userId = comment.getUser().getUserId();

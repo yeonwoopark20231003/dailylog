@@ -15,7 +15,7 @@ import java.util.Date;
 
 @Slf4j
 @Component
-public class JwtUtil{
+public class JwtUtil {
     //Header KEY값
     public static final String AUTHORIZATION_HEADER = "Authorization";
 
@@ -36,9 +36,9 @@ public class JwtUtil{
     }
 
     //토큰 뽑아오기
-    public String resolveToken(HttpServletRequest request){
+    public String resolveToken(HttpServletRequest request) {
         String bearerToken = request.getHeader(AUTHORIZATION_HEADER);
-        if (StringUtils.hasText(bearerToken)&& bearerToken.startsWith(BEARER_PREFIX)){
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(BEARER_PREFIX)) {
             return bearerToken.substring(7);
         }
         return null;
@@ -73,7 +73,7 @@ public class JwtUtil{
         return BEARER_PREFIX +
                 Jwts.builder()
                         .setSubject(username)
-                        .setExpiration(new Date(date.getTime()+TOKEN_TIME))
+                        .setExpiration(new Date(date.getTime() + TOKEN_TIME))
                         .setIssuedAt(date)
                         .signWith(key, signatureAlgorithm)
                         .compact();

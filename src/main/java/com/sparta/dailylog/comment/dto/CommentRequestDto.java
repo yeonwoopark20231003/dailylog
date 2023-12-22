@@ -8,7 +8,4 @@ public class CommentRequestDto {
 
     private String content;
 
- /*    CommentRequestDto(String content){
-        this.content = content;
-    }*/
 }
