@@ -6,8 +6,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sparta.dailylog.jwt.JwtUtil;
 import com.sparta.dailylog.user.dto.KakaoUserInfoDto;
+import com.sparta.dailylog.user.entity.User;
 import com.sparta.dailylog.user.repository.UserRepository;
 import java.net.URI;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
@@ -36,6 +38,12 @@ public class KakaoService {
 
     // 2. 토큰으로 카카오 API 호출 : "액세스 토큰"으로 "카카오 사용자 정보" 가져오기
     KakaoUserInfoDto kakaoUserInfo = getKakaoUserInfo(accessToken);
+
+    //3. 필요시 회원가입
+    User kakaoUser = registerKakaoUserIfNeeded(kakaoUserInfo);
+
+    // 4. Jwt 토큰 반환
+    String createToken = jwtUtil.createToken(kakaoUser.getUserId());
 
     return null;
   }
@@ -112,6 +120,37 @@ public class KakaoService {
 */
     log.info("카카오 사용자 정보: " + id + ", " + nickname);
     return new KakaoUserInfoDto(id, nickname);
+  }
+
+
+  private User registerKakaoUserIfNeeded(KakaoUserInfoDto kakaoUserInfo) {
+    // DB 에 중복된 Kakao Id 가 있는지 확인
+    Long kakaoId = kakaoUserInfo.getId();
+    User kakaoUser = userRepository.findByKakaoId(kakaoId).orElse(null);
+
+/*    if (kakaoUser == null) {
+      // 카카오 사용자 email 동일한 email 가진 회원이 있는지 확인
+      String kakaoEmail = kakaoUserInfo.getEmail();
+      User sameEmailUser = userRepository.findByEmail(kakaoEmail).orElse(null);
+      if (sameEmailUser != null) {
+        kakaoUser = sameEmailUser;
+        // 기존 회원정보에 카카오 Id 추가
+        kakaoUser = kakaoUser.kakaoIdUpdate(kakaoId);
+      } else {
+       */ // 신규 회원가입
+    // password: random UUID
+    String password = UUID.randomUUID().toString();
+    String encodedPassword = passwordEncoder.encode(password);
+
+    // email: kakao email
+    //String email = kakaoUserInfo.getEmail();
+
+    kakaoUser = new User(kakaoUserInfo.getNickname(), encodedPassword, kakaoId);
+    //}
+
+    userRepository.save(kakaoUser);
+    // }
+    return kakaoUser;
   }
 
 }
