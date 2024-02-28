@@ -1,10 +1,12 @@
-package com.sparta.dailylog.user;
+package com.sparta.dailylog.user.service;
 
-import com.sparta.dailylog.CommonResponseDto;
+import com.sparta.dailylog.global.CommonResponseDto;
 import com.sparta.dailylog.jwt.JwtUtil;
 import com.sparta.dailylog.jwt.Token;
 import com.sparta.dailylog.jwt.TokenRepository;
+import com.sparta.dailylog.user.entity.User;
 import com.sparta.dailylog.user.dto.UserRequestDto;
+import com.sparta.dailylog.user.repository.UserRepository;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

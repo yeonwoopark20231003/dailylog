@@ -1,5 +1,6 @@
-package com.sparta.dailylog.user;
+package com.sparta.dailylog.user.repository;
 
+import com.sparta.dailylog.user.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

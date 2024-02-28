@@ -1,7 +1,7 @@
 package com.sparta.dailylog.post.dto;
 
-import com.sparta.dailylog.CommonResponseDto;
-import com.sparta.dailylog.post.Post;
+import com.sparta.dailylog.global.CommonResponseDto;
+import com.sparta.dailylog.post.entity.Post;
 import lombok.*;
 
 @Getter

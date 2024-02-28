@@ -1,7 +1,7 @@
 package com.sparta.dailylog.comment.dto;
 
-import com.sparta.dailylog.CommonResponseDto;
-import com.sparta.dailylog.comment.Comment;
+import com.sparta.dailylog.global.CommonResponseDto;
+import com.sparta.dailylog.comment.entity.Comment;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

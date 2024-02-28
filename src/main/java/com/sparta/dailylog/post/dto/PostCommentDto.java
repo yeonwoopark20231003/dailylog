@@ -1,13 +1,11 @@
 package com.sparta.dailylog.post.dto;
 
-import com.sparta.dailylog.CommonResponseDto;
-import com.sparta.dailylog.Timestamped;
-import com.sparta.dailylog.comment.Comment;
+import com.sparta.dailylog.global.CommonResponseDto;
+import com.sparta.dailylog.comment.entity.Comment;
 import com.sparta.dailylog.comment.dto.CommentResponseDto;
-import com.sparta.dailylog.post.Post;
+import com.sparta.dailylog.post.entity.Post;
 import lombok.Getter;
 import lombok.Setter;
-import org.yaml.snakeyaml.comments.CommentLine;
 
 import java.util.ArrayList;
 import java.util.List;

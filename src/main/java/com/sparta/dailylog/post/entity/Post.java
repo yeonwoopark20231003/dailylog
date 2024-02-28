@@ -1,9 +1,9 @@
-package com.sparta.dailylog.post;
+package com.sparta.dailylog.post.entity;
 
-import com.sparta.dailylog.Timestamped;
-import com.sparta.dailylog.comment.Comment;
+import com.sparta.dailylog.global.Timestamped;
+import com.sparta.dailylog.comment.entity.Comment;
 import com.sparta.dailylog.post.dto.PostRequestDto;
-import com.sparta.dailylog.user.User;
+import com.sparta.dailylog.user.entity.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

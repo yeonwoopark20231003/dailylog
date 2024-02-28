@@ -1,4 +1,4 @@
-package com.sparta.dailylog;
+package com.sparta.dailylog.global;
 
 import jakarta.persistence.*;
 import lombok.Getter;

@@ -1,10 +1,12 @@
-package com.sparta.dailylog.post;
+package com.sparta.dailylog.post.controller;
 
 
-import com.sparta.dailylog.CommonResponseDto;
+import com.sparta.dailylog.global.CommonResponseDto;
+import com.sparta.dailylog.post.repository.PostRepository;
+import com.sparta.dailylog.post.service.PostService;
 import com.sparta.dailylog.post.dto.PostRequestDto;
 import com.sparta.dailylog.post.dto.PostResponseDto;
-import com.sparta.dailylog.user.UserDetailsImpl;
+import com.sparta.dailylog.user.details.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

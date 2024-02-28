@@ -1,9 +1,10 @@
-package com.sparta.dailylog.comment;
+package com.sparta.dailylog.comment.controller;
 
-import com.sparta.dailylog.CommonResponseDto;
+import com.sparta.dailylog.global.CommonResponseDto;
+import com.sparta.dailylog.comment.service.CommentService;
 import com.sparta.dailylog.comment.dto.CommentRequestDto;
 import com.sparta.dailylog.comment.dto.CommentResponseDto;
-import com.sparta.dailylog.user.UserDetailsImpl;
+import com.sparta.dailylog.user.details.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

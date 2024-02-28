@@ -1,9 +1,11 @@
-package com.sparta.dailylog.post;
+package com.sparta.dailylog.post.service;
 
+import com.sparta.dailylog.post.entity.Post;
 import com.sparta.dailylog.post.dto.PostCommentDto;
 import com.sparta.dailylog.post.dto.PostRequestDto;
 import com.sparta.dailylog.post.dto.PostResponseDto;
-import com.sparta.dailylog.user.User;
+import com.sparta.dailylog.post.repository.PostRepository;
+import com.sparta.dailylog.user.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;

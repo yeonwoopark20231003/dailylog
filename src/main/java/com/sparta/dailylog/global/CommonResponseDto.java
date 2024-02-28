@@ -1,4 +1,4 @@
-package com.sparta.dailylog;
+package com.sparta.dailylog.global;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;

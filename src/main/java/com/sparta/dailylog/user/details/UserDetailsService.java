@@ -1,5 +1,7 @@
-package com.sparta.dailylog.user;
+package com.sparta.dailylog.user.details;
 
+import com.sparta.dailylog.user.entity.User;
+import com.sparta.dailylog.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

@@ -1,8 +1,8 @@
 package com.sparta.dailylog.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sparta.dailylog.CommonResponseDto;
-import com.sparta.dailylog.user.UserDetailsService;
+import com.sparta.dailylog.global.CommonResponseDto;
+import com.sparta.dailylog.user.details.UserDetailsService;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

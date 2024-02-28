@@ -1,6 +1,6 @@
 package com.sparta.dailylog.jwt;
 
-import com.sparta.dailylog.user.User;
+import com.sparta.dailylog.user.entity.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

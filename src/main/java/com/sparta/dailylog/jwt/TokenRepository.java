@@ -1,6 +1,6 @@
 package com.sparta.dailylog.jwt;
 
-import com.sparta.dailylog.user.User;
+import com.sparta.dailylog.user.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDateTime;

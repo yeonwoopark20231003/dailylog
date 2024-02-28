@@ -1,5 +1,6 @@
-package com.sparta.dailylog.user;
+package com.sparta.dailylog.user.details;
 
+import com.sparta.dailylog.user.entity.User;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

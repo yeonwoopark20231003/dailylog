@@ -1,6 +1,6 @@
 package com.sparta.dailylog.exception;
 
-import com.sparta.dailylog.CommonResponseDto;
+import com.sparta.dailylog.global.CommonResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

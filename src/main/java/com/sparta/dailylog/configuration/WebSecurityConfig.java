@@ -3,7 +3,7 @@ package com.sparta.dailylog.configuration;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sparta.dailylog.jwt.JwtAuthorizationFilter;
 import com.sparta.dailylog.jwt.JwtUtil;
-import com.sparta.dailylog.user.UserDetailsService;
+import com.sparta.dailylog.user.details.UserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;

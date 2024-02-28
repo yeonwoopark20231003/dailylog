@@ -1,10 +1,12 @@
-package com.sparta.dailylog.comment;
+package com.sparta.dailylog.comment.service;
 
+import com.sparta.dailylog.comment.entity.Comment;
 import com.sparta.dailylog.comment.dto.CommentRequestDto;
 import com.sparta.dailylog.comment.dto.CommentResponseDto;
-import com.sparta.dailylog.post.Post;
-import com.sparta.dailylog.post.PostRepository;
-import com.sparta.dailylog.user.User;
+import com.sparta.dailylog.comment.repository.CommentRepository;
+import com.sparta.dailylog.post.entity.Post;
+import com.sparta.dailylog.post.repository.PostRepository;
+import com.sparta.dailylog.user.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
