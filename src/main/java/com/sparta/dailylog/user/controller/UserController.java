@@ -10,6 +10,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping("/api/users")
+@Slf4j(topic = "KAKAO Login")
+@RequestMapping("/api")
 @RestController
 @RequiredArgsConstructor
 public class UserController {
@@ -28,7 +30,7 @@ public class UserController {
   private final JwtUtil jwtUtil;
   private final KakaoService kakaoService;
 
-  @PostMapping("/signup")
+  @PostMapping("users/signup")
   public ResponseEntity<CommonResponseDto> signup(
       @Valid @RequestBody UserRequestDto userRequestDto) {
     try {
@@ -42,7 +44,7 @@ public class UserController {
         .body(new CommonResponseDto("회원가입 성공", HttpStatus.CREATED.value()));
   }
 
-  @PostMapping("/login")
+  @PostMapping("users/login")
   public ResponseEntity<CommonResponseDto> login(@RequestBody UserRequestDto userRequestDto,
       HttpServletResponse response) {
     try {
@@ -61,6 +63,7 @@ public class UserController {
   @GetMapping("/user/kakao/callback")
   public String kakaoLogin(@RequestParam String code, HttpServletResponse response)
       throws JsonProcessingException {
+    log.info("code: " + code);
     String token = kakaoService.kakaoLogin(code);
 
     Cookie cookie = new Cookie(JwtUtil.AUTHORIZATION_HEADER, token.substring(7));

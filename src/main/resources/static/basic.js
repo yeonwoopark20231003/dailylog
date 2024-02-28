@@ -14,6 +14,14 @@ $(document).ready(function () {
     return;
   }
 
+  /*   $.ajax({
+        type: 'GET',
+        url: `/api/user/kakao/callback`,
+        contentType: "application/json",
+        data: JSON.stringify({
+          folderNames
+        })*/
+
   $.ajax({
     type: 'GET',
     url: `/api/user-info`,
